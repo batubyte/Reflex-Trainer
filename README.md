@@ -1,4 +1,4 @@
-# Endless Instant Awareness & Reflex Trainer game
+# Endless Instant Awareness & Reflex Trainer Game
 When you see "Attack!" in the box, click Parry immediately.
 
 ## Rankings for gamers
