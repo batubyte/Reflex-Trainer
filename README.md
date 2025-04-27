@@ -1,7 +1,7 @@
 # Instant Awareness & Reflex Trainer
 When you see "Attack!" in the box, click Parry immediately.
 
-## Ranking for gaming
+## Rankings for gamers
 < 120ms: Godlike
 
 < 140ms: Elite
