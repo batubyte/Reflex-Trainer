@@ -168,8 +168,8 @@ def main():
         with dpg.group(horizontal=True):
             dpg.add_listbox(items=items, tag='listbox')
             with dpg.child_window(height=75):
-                dpg.add_text(tag='text1')
-                dpg.add_text(tag='text2')
+                dpg.add_text(color=[0, 0, 0], tag='text1')
+                dpg.add_text(color=[0, 0, 0], tag='text2')
 
         displays = get_hz()
         for display in displays:
