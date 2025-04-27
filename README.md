@@ -1,5 +1,4 @@
-# Reflex-Trainer
-Python GUI Instant Awareness &amp; Reflex Trainer
+# Instant Awareness & Reflex Trainer
 When you see "Attack!" in the box, click Parry immediately.
 
 ## Ranking
