@@ -1,7 +1,7 @@
 # Instant Awareness & Reflex Trainer
 When you see "Attack!" in the box, click Parry immediately.
 
-## Ranking
+## Ranking for gaming
 < 120ms: Godlike
 
 < 140ms: Elite
@@ -24,3 +24,6 @@ When you see "Attack!" in the box, click Parry immediately.
 
 ## Images
 ![image](https://github.com/user-attachments/assets/da17fe27-8b65-4177-b2db-8b976051980c)
+
+## Note
+Using a fast computer and low latency / high framerate monitor will improve your score.
