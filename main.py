@@ -73,12 +73,12 @@ def game_loop():
     if not game_running:
         return
 
-    current_action = random.choice(["Attack!", "Feint!"])
+    current_action = random.choice(["Attack!", "Feint!", "Heavy Attack!"])
 
     if current_action:
         dpg.set_value(selected_text_tag, current_action)
         action_time = time.perf_counter()
-        awaiting_reaction = True  # <<< waiting for player now
+        awaiting_reaction = True
 
         if current_action == "Feint!":
             feint_start = time.perf_counter()
@@ -98,13 +98,14 @@ def game_loop():
         action_time = 0
 
 
+
 def parry_pressed():
     global game_running, current_action, action_time, awaiting_reaction
 
     if not game_running or not awaiting_reaction:
         return
 
-    if action_time == 0 and current_action is None:
+    if action_time == 0 or current_action is None:
         return
 
     now = time.perf_counter()
@@ -136,12 +137,70 @@ def parry_pressed():
 
         items.append(f"{judgement} - {fps}fps {int(reaction_time)}ms")
 
-    elif current_action == "Feint!" and action_time != 0:
-        items.append("Mistake")
+    elif current_action == "Feint!":
+        pass
+
+    elif current_action == "Heavy Attack!":
+        items.append("Wrong Move (Parry)")
 
     dpg.set_value("text1", "")
     dpg.set_value("text2", "")
+    dpg.configure_item('listbox', items=items)
 
+    current_action = None
+    action_time = 0
+    awaiting_reaction = False
+
+    if game_running:
+        threading.Thread(target=game_loop, daemon=True).start()
+
+
+def dodge_pressed():
+    global game_running, current_action, action_time, awaiting_reaction
+
+    if not game_running or not awaiting_reaction:
+        return
+
+    if action_time == 0 or current_action is None:
+        return
+
+    now = time.perf_counter()
+    fps = int(get_fps())
+
+    if current_action == "Heavy Attack!":
+        reaction_time = (now - action_time) * 1000
+
+        if reaction_time < 120:
+            judgement = "Godlike"
+        elif reaction_time < 140:
+            judgement = "Elite"
+        elif reaction_time < 160:
+            judgement = "Pro"
+        elif reaction_time < 180:
+            judgement = "Semi-Pro"
+        elif reaction_time < 200:
+            judgement = "Advanced"
+        elif reaction_time < 220:
+            judgement = "Good"
+        elif reaction_time < 240:
+            judgement = "Average"
+        elif reaction_time < 260:
+            judgement = "Below Average"
+        elif reaction_time < 280:
+            judgement = "Slow"
+        else:
+            judgement = "Noob"
+
+        items.append(f"{judgement} - {fps}fps {int(reaction_time)}ms")
+
+    elif current_action == "Attack!":
+        items.append("Wrong Move (Dodge)")
+    elif current_action == "Feint!":
+        # Feint'te hiçbir şey yapma
+        pass
+
+    dpg.set_value("text1", "")
+    dpg.set_value("text2", "")
     dpg.configure_item('listbox', items=items)
 
     current_action = None
@@ -163,7 +222,8 @@ def main():
     with dpg.window(tag="Primary Window"):
         with dpg.group(horizontal=True):
             dpg.add_button(label='Start', width=100, callback=start_game)
-            dpg.add_button(label='Parry', width=368, callback=parry_pressed)
+            dpg.add_button(label='Parry', width=184, callback=parry_pressed)
+            dpg.add_button(label='Dodge', width=184, callback=dodge_pressed)
             
         with dpg.group(horizontal=True):
             dpg.add_listbox(items=items, tag='listbox')
