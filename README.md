@@ -23,7 +23,7 @@ When you see "Attack!" in the box, click Parry immediately.
 ≥ 280ms: Noob
 
 ## Images
-![image](https://github.com/user-attachments/assets/868d2475-7676-41e1-ab47-adc4ca5a1f2c)
+![image](https://github.com/user-attachments/assets/cc7f65af-7007-4704-94da-19a9bc12514b)
 
 ## Note
 Using a fast computer and low latency / high framerate monitor will improve your score.
